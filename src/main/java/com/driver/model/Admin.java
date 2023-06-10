@@ -14,9 +14,6 @@ public class Admin {
 
     private String password;
 
-    public Admin() {
-    }
-
     public Integer getAdminId() {
         return adminId;
     }

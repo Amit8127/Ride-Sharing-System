@@ -21,8 +21,6 @@ public class Driver {
 
     @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
     private List<TripBooking> tripBookings = new ArrayList<>();
-    public Driver() {
-    }
 
     public Integer getDriverId() {
         return driverId;
@@ -63,4 +61,6 @@ public class Driver {
     public void setTripBookings(List<TripBooking> tripBookings) {
         this.tripBookings = tripBookings;
     }
+
+
 }

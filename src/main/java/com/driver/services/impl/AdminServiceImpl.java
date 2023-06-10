@@ -35,10 +35,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public Admin updatePassword(Integer adminId, String password) throws AdminNotFound{
 		//Update the password of admin with given id
-		if(!adminRepository1.existsById(adminId)) {
-			throw new AdminNotFound(adminId);
-		}
-		Admin admin = adminRepository1.getOne(adminId);
+		Admin admin = adminRepository1.findById(adminId).get();
 		admin.setPassword(password);
 		adminRepository1.save(admin);
 		return admin;
@@ -47,10 +44,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void deleteAdmin(int adminId) throws AdminNotFound{
 		// Delete admin without using deleteById function
-		if(!adminRepository1.existsById(adminId)) {
-			throw new AdminNotFound(adminId);
-		}
-		Admin admin = adminRepository1.getOne(adminId);
+		Admin admin = adminRepository1.findById(adminId).get();
 		adminRepository1.delete(admin);
 	}
 
@@ -67,5 +61,4 @@ public class AdminServiceImpl implements AdminService {
 		List<Customer> customers = customerRepository1.findAll();
 		return customers;
 	}
-
 }

@@ -28,8 +28,6 @@ public class TripBooking {
     @ManyToOne
     @JoinColumn
     private Driver driver;
-    public TripBooking() {
-    }
 
     public Integer getTripBookingId() {
         return tripBookingId;

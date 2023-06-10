@@ -8,7 +8,7 @@ public class Cab {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer cabId;
+    private Integer Id;
 
     private Integer perKmRate;
 
@@ -18,15 +18,12 @@ public class Cab {
     @JoinColumn
     private Driver driver;
 
-    public Cab() {
+    public Integer getId() {
+        return Id;
     }
 
-    public Integer getCabId() {
-        return cabId;
-    }
-
-    public void setCabId(Integer cabId) {
-        this.cabId = cabId;
+    public void setId(Integer id) {
+        this.Id = id;
     }
 
     public Integer getPerKmRate() {

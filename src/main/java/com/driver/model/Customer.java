@@ -18,8 +18,6 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<TripBooking> tripBookings = new ArrayList<>();
-    public Customer() {
-    }
 
     public Integer getCustomerId() {
         return customerId;

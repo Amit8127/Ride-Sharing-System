@@ -36,7 +36,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void deleteCustomer(Integer customerId) {
 		// Delete customer without using deleteById function
-		Customer customer = customerRepository2.getOne(customerId);
+		Customer customer = customerRepository2.findById(customerId).get();;
 		customerRepository2.delete(customer);
 	}
 
@@ -45,22 +45,20 @@ public class CustomerServiceImpl implements CustomerService {
 		//Book the driver with lowest driverId who is free (cab available variable is Boolean.TRUE). If no driver is available, throw "No cab available!" exception
 		//Avoid using SQL query
 		Driver avaDriver = null;
-		int loDrId = Integer.MAX_VALUE;
 		List<Driver> drivers = driverRepository2.findAll();
 		for(Driver driver : drivers) {
 			if(driver.getCab().getAvailable() == Boolean.TRUE) {
-				loDrId = Math.min(loDrId, driver.getDriverId());
+				if((avaDriver == null) || (driver.getDriverId() > driver.getDriverId())){
+					avaDriver = driver;
+				}
 			}
 		}
-		if(loDrId != Integer.MAX_VALUE) {
-			avaDriver = driverRepository2.getOne(loDrId);
-		}
 		if(avaDriver == null) {
-			throw new NoCabAvailable();
+			throw new Exception("No cab available!");
 		}
 
 		TripBooking tripBooking = new TripBooking();
-		Customer customer = customerRepository2.getOne(customerId);
+		Customer customer = customerRepository2.findById(customerId).get();
 		avaDriver.getCab().setAvailable(Boolean.FALSE);
 		int retParKm = avaDriver.getCab().getPerKmRate();
 
@@ -84,7 +82,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void cancelTrip(Integer tripId){
 		//Cancel the trip having given trip Id and update TripBooking attributes accordingly
-		TripBooking tripBooking = tripBookingRepository2.getOne(tripId);
+		TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
 		tripBooking.setTripStatus(TripStatus.CANCELED);
 
 		tripBooking.getDriver().getCab().setAvailable(Boolean.TRUE);
@@ -96,7 +94,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void completeTrip(Integer tripId){
 		//Complete the trip having given trip Id and update TripBooking attributes accordingly
-		TripBooking tripBooking = tripBookingRepository2.getOne(tripId);
+		TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
 		tripBooking.setTripStatus(TripStatus.COMPLETED);
 
 		int bill = tripBooking.getDriver().getCab().getPerKmRate() * tripBooking.getDistanceInKm();
