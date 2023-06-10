@@ -1,6 +1,5 @@
 package com.driver.controllers;
 
-import com.driver.Exceptions.DriverNotFound;
 import com.driver.services.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,18 +19,12 @@ public class DriverController {
 	}
 
 	@DeleteMapping(value = "/delete")
-	public void deleteDriver(@RequestParam Integer driverId) throws DriverNotFound{
-		try {
-			driverService.removeDriver(driverId);
-		} catch (DriverNotFound ignored) {
-		}
+	public void deleteDriver(@RequestParam Integer driverId) {
+		driverService.removeDriver(driverId);
 	}
 
 	@PutMapping("/status")
-	public void updateStatus(@RequestParam Integer driverId) throws DriverNotFound{
-		try {
+	public void updateStatus(@RequestParam Integer driverId) {
 			driverService.updateStatus(driverId);
-		} catch (DriverNotFound ignored) {
-		}
 	}
 }

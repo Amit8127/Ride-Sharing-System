@@ -27,20 +27,13 @@ public class AdminController {
 
 	@PutMapping("/update")
 	public ResponseEntity<Admin> updateAdminPassword(@RequestParam Integer adminId, @RequestParam String password) throws AdminNotFound{
-		try {
-			Admin updatedAdmin = adminService.updatePassword(adminId, password);
-			return new ResponseEntity<>(updatedAdmin, HttpStatus.OK);
-		} catch (AdminNotFound ex) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		}
+		Admin updatedAdmin = adminService.updatePassword(adminId, password);
+		return new ResponseEntity<>(updatedAdmin, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete")
 	public void deleteAdmin(@RequestParam Integer adminId) throws AdminNotFound{
-		try {
-			adminService.deleteAdmin(adminId);
-		} catch (AdminNotFound ignored) {
-		}
+		adminService.deleteAdmin(adminId);
 	}
 
 	@GetMapping("/listOfCustomers")
