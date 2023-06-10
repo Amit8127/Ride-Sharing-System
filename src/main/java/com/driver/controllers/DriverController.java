@@ -22,18 +22,12 @@ public class DriverController {
 	}
 	
 	@DeleteMapping(value = "/delete")
-	public void deleteDriver(@RequestParam Integer driverId) throws DriverNotFound{
-		try {
-			driverService.removeDriver(driverId);
-		} catch (DriverNotFound ignored) {
-		}
+	public void deleteDriver(@RequestParam Integer driverId){
+		driverService.removeDriver(driverId);
 	}
 
 	@PutMapping("/status")
-	public void updateStatus(@RequestParam Integer driverId) throws DriverNotFound{
-		try {
-			driverService.updateStatus(driverId);
-		} catch (DriverNotFound ignored) {
-		}
+	public void updateStatus(@RequestParam Integer driverId){
+		driverService.updateStatus(driverId);
 	}
 }
