@@ -1,6 +1,5 @@
 package com.driver.controllers;
 
-import com.driver.Exceptions.AdminAlreadyExists;
 import com.driver.Exceptions.AdminNotFound;
 import com.driver.model.Admin;
 import com.driver.model.Customer;
@@ -27,14 +26,21 @@ public class AdminController {
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Admin> updateAdminPassword(@RequestParam Integer adminId, @RequestParam String password){
-		Admin updatedAdmin = adminService.updatePassword(adminId, password);
-		return new ResponseEntity<>(updatedAdmin, HttpStatus.OK);
+	public ResponseEntity<Admin> updateAdminPassword(@RequestParam Integer adminId, @RequestParam String password) throws AdminNotFound{
+		try {
+			Admin updatedAdmin = adminService.updatePassword(adminId, password);
+			return new ResponseEntity<>(updatedAdmin, HttpStatus.OK);
+		} catch (AdminNotFound ex) {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@DeleteMapping("/delete")
 	public void deleteAdmin(@RequestParam Integer adminId) throws AdminNotFound{
-		adminService.deleteAdmin(adminId);
+		try {
+			adminService.deleteAdmin(adminId);
+		} catch (AdminNotFound ignored) {
+		}
 	}
 
 	@GetMapping("/listOfCustomers")
