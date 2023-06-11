@@ -6,7 +6,7 @@ This is a README file that provides an overview of the code for a Ride-sharing S
 
 **The system have the following features:**
 
-# Admin
+## Admin
 
 The Admin entity is responsible for managing the system. It has the following functionalities:
 
@@ -14,7 +14,7 @@ The Admin entity is responsible for managing the system. It has the following fu
 * Update the password of existing admins
 * Delete existing admins
 
-# Customer
+## Customer
 
 The Customer entity represents the users of the ride-sharing service. It provides the following functionalities:
 
@@ -24,21 +24,21 @@ The Customer entity represents the users of the ride-sharing service. It provide
 * Assign the nearest available driver and cab to the customer when booking a trip
 * Cancel or complete a trip
 
-# Driver
+## Driver
 The Driver entity represents the drivers who provide transportation services. It has the following functionalities:
 
 * Register new drivers
 * Delete existing drivers
 * Update the status of their cab (available or unavailable)
 
-# Cab
+## Cab
 
 The Cab entity stores information about the available cabs. It includes the following information:
 
 * Per-kilometer rate
 * Availability status of the cab (available or unavailable)
 
-# TripBooking
+## TripBooking
 
 The TripBooking entity stores information about the trips booked by customers. It includes the following information:
 
@@ -47,7 +47,7 @@ The TripBooking entity stores information about the trips booked by customers. I
 * Status of the trip (ongoing, completed, cancelled)
 * Bill
 
-# Code Organization
+## Code Organization
 
 The code for this ride-sharing system can be organized into **separate classes or packages** for each entity, along with any necessary helper classes or functions. The code follow **Object-Oriented Programming principles** and best practices such as encapsulation, modularity, and proper separation of concerns.
 
