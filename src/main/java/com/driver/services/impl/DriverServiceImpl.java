@@ -23,10 +23,14 @@ public class DriverServiceImpl implements DriverService {
 		Driver driver = new Driver();
 		driver.setMobile(mobile);
 		driver.setPassword(password);
+
 		Cab cab = new Cab();
 		cab.setPerKmRate(10);
 		cab.setAvailable(Boolean.TRUE);
+
+		driver.setCab(cab); // Bidirectional mapping 
 		cab.setDriver(driver);
+
 		driverRepository3.save(driver);
 	}
 
