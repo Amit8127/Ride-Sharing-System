@@ -56,6 +56,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 		TripBooking tripBooking = new TripBooking();
 		Customer customer = customerRepository2.findById(customerId).get();
+
 		avaDriver.getCab().setAvailable(Boolean.FALSE);
 		int retParKm = avaDriver.getCab().getPerKmRate();
 
@@ -66,10 +67,10 @@ public class CustomerServiceImpl implements CustomerService {
 		tripBooking.setDistanceInKm(distanceInKm);
 		tripBooking.setBill(distanceInKm * retParKm);
 		tripBooking.setStatus(TripStatus.CONFIRMED);
-		tripBooking = tripBookingRepository2.save(tripBooking); //
+//		tripBooking = tripBookingRepository2.save(tripBooking);
 		customer.getTripBookings().add(tripBooking);
-		customerRepository2.save(customer);
 		avaDriver.getTripBookings().add(tripBooking);
+		customerRepository2.save(customer);
 		driverRepository2.save(avaDriver);
 		return tripBooking;
 	}
